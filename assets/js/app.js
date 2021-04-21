@@ -1,11 +1,19 @@
 // Chart parameters
-var svgWidth = 960;
+var svgWidth = 920;
 var svgHeight = 500;
 
 var margin = {top: 30, right: 30, bottom: 80, left: 60};
 
 // Make responsive
 //function makeResponsive() {
+
+    //remove SVG area if not empty and replace with resized version
+    var svgArea = d3.select("body").select("svg");
+
+    //clear svg not empty
+    if (!svgArea.empty()) {
+        svgArea.remove();
+    }
 
     //Create the SVG wrapper, append SVG group, move left and top margins
     var width = svgWidth - margin.left - margin.right;
@@ -68,7 +76,7 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
             .attr("cx", d => xLinearScale(d.poverty))
             .attr("cy", d => yLinearScale(d.healthcare))
             .attr("r", 20)
-            .attr("fill", "blue")
+            .attr("fill", "#000f87")
             .attr("opacity", ".5");
 
         // Create group for two x-axis labels
@@ -100,6 +108,7 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
 
     });
 
+//}
 
 // Call function when browser loads
 //makeResponsive();
