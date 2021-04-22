@@ -28,6 +28,11 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
     var chartGroup = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+    // Initial Params (to be used later to switch graphs)
+    var chosenXAxis = "poverty";
+    var chosenYAxis = "healthcare";
+
+
     // Retrieve data from the CSV file and execute everything below
     d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         if (err) throw err;
@@ -38,12 +43,12 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
         healthRisks.forEach(function (data) {
             data.poverty = +data.poverty;
             data.healthcare = +data.healthcare;
+            data.abbr = data.abbr;
             //data.smokes = +data.smokes;
             //data.age = +data.age;
         });
 
         // xLinearScale function above csv import
-        // var xLinearScale = xScale(healthRisks, chosenXAxis);
         var xLinearScale = d3.scaleLinear()
             .domain([8, d3.max(healthRisks, d => d.poverty)])
             .range([0, width]);
@@ -75,9 +80,18 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
             //.attr("cx", d => xLinearScale(d[chosenXAxis]))
             .attr("cx", d => xLinearScale(d.poverty))
             .attr("cy", d => yLinearScale(d.healthcare))
-            .attr("r", 20)
+            .attr("r", 15)
             .attr("fill", "#000f87")
             .attr("opacity", ".5");
+
+        circlesGroup.append("text")
+            .text (data => data.abbr)
+            .attr("cx", d => xLinearScale(d.poverty))
+            .attr("cy", d => yLinearScale(d.healthcare))
+            .attr("text-anchor", "middle")
+            .classed("stateAbbr", true)
+            .style("font, 10px sans-serif");
+
 
         // Create group for two x-axis labels
         var labelsGroup = chartGroup.append("g")
