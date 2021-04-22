@@ -1,5 +1,5 @@
 // Chart parameters
-var svgWidth = 920;
+var svgWidth = 900;
 var svgHeight = 500;
 
 var margin = {top: 30, right: 30, bottom: 80, left: 60};
@@ -51,7 +51,7 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
 
         // xLinearScale function above csv import
         var xLinearScale = d3.scaleLinear()
-            .domain([8, d3.max(healthRisks, d => d.poverty)])
+            .domain([8, d3.max(healthRisks, d => d.poverty) + 1])
             .range([0, width]);
 
         // Create y scale function
@@ -82,36 +82,6 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
         chartGroup.append("g")
             .call(leftAxis);
 
-        
-        // // Define the circles group
-        // var circlesTextGroup = chartGroup.selectAll("circle")
-        // .data(healthRisks)
-        // .enter()
-    
-        // // Append initial circles
-        // var circlesGroup = circlesTextGroup
-        //     .append("circle")
-        //     .attr("cx", d => xLinearScale(d.poverty))
-        //     .attr("cy", d => yLinearScale(d.healthcare))
-        //     .attr("r", radius)
-        //     .attr("fill", "#000f87")
-        //     .attr("opacity", ".5");
-
-
-        // // Append initial state abbreviations 
-        // var textGroup = circlesTextGroup
-        //      .append("text")
-        //      .classed("stateAbbr", true)
-        //      .attr("x", d => xLinearScale(d.poverty))
-        //      .attr("y", d => yLinearScale(d.healthcare))
-        //      .text (data => data.abbr)
-        //      .attr ("dy", 3)
-        //      .attr("font-size", radius);
-             
-
-
-
-
          // Append initial circles
          var circlesGroup = chartGroup.selectAll("circle")
          .data(healthRisks)
@@ -121,8 +91,8 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
          .attr("cx", d => xLinearScale(d.poverty))
          .attr("cy", d => yLinearScale(d.healthcare))
          .attr("r", radius)
-         .attr("fill", "#000f87")
-         .attr("opacity", ".5");
+         .attr("fill", "#a8bae8")
+         .attr("opacity", ".6");
 
      // Append initial state abbreviations to circles
      var circleslabelsGroup = chartGroup.selectAll(".stateAbbr")
@@ -132,18 +102,13 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
          .classed("stateAbbr", true)
          .attr("x", d => xLinearScale(d.poverty))
          .attr("y", d => yLinearScale(d.healthcare))
+         .attr("text-anchor", "middle")
+         .attr("dy", 4)
          .text (data => data.abbr)
-         .attr("font-size", radius)
+         .style("font-size", 10)
+         .style("font-weight", "bold")
          
-        //  circlesGroup.append("stateAbbr")
-        //     .text (data => data.abbr)
-        //     .attr("cx", d => xLinearScale(d.poverty))
-        //     .attr("cy", d => yLinearScale(d.healthcare))
-        //     .attr("text-anchor", "middle")
-        //     .classed("stateAbbr", true)
-        //     .style("font, 10px sans-serif");
-
-
+         
         // Create group for two x-axis labels
         var labelsGroup = chartGroup.append("g")
             .attr("transform", `translate(${width / 2}, ${height + 10})`);
