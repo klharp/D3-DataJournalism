@@ -2,7 +2,7 @@
 var svgWidth = 900;
 var svgHeight = 500;
 
-var margin = { top: 30, right: 30, bottom: 100, left: 60 };
+var margin = { top: 30, right: 30, bottom: 100, left: 50 };
 
 // Make responsive
 //function makeResponsive() {
@@ -156,21 +156,21 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         .attr("y", 50)
         .attr("value", "age") // value to grab for event listener
         .classed("inactive", true)
-        .text("Age");
+        .text("Average Age (Years)");
 
     var incomeLabel = labelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 70)
         .attr("value", "income") // value to grab for event listener
         .classed("inactive", true)
-        .text("Income");
+        .text("Average Income ($)");
 
     // append y axis
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 0 - margin.left)
         .attr("x", 0 - (height / 2))
-        .attr("dy", "1em")
+        .attr("dy", 10)
         .classed("axis-text", true)
         .text("Lacks Healthcare (%)");
 
@@ -208,17 +208,34 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                     ageLabel
                         .classed("active", false)
                         .classed("inactive", true);
+                    incomeLabel
+                        .classed("active", false)
+                        .classed("inactive", true);
+                }
+                else if (chosenXAxis === "age") {
+                    ageLabel
+                        .classed("active", true)
+                        .classed("inactive", false);
+                    povertyLabel
+                        .classed("active", false)
+                        .classed("inactive", true);
+                    incomeLabel
+                        .classed("active", false)
+                        .classed("inactive", true);
                 }
                 else {
+                    incomeLabel
+                        .classed("active", true)
+                        .classed("inactive", false);
                     povertyLabel
                         .classed("active", false)
                         .classed("inactive", true);
                     ageLabel
-                        .classed("active", true)
-                        .classed("inactive", false);
+                        .classed("active", false)
+                        .classed("inactive", true);
                 }
-            }
-        });
+                }
+            });
 
 
 
@@ -303,5 +320,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
 
 //   return circlesGroup;
 // }
+
+
 
 
