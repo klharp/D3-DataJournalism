@@ -31,6 +31,7 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
     // Initial Params (to be used later to switch graphs)
     var chosenXAxis = "poverty";
     var chosenYAxis = "healthcare";
+    var radius = 15
 
 
     // Retrieve data from the CSV file and execute everything below
@@ -62,6 +63,15 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
         var bottomAxis = d3.axisBottom(xLinearScale);
         var leftAxis = d3.axisLeft(yLinearScale);
 
+        // // Create function to render state names
+        // function renderStateNames(circleslabelsGroup, bottomAxis, leftAxis, xLinearScale, yLinearScale) {
+        //     circleslabelsGroup.transition()
+        //     .duration(1000)
+        //     .attr("cx", d => xLinearScale(d.poverty))
+        //     .attr("cy", d => yLinearScale(d.healthcare));
+        // return circleslabelsGroup;    
+        // };
+
         // append x axis
         var xAxis = chartGroup.append("g")
             .classed("x-axis", true)
@@ -72,25 +82,66 @@ var margin = {top: 30, right: 30, bottom: 80, left: 60};
         chartGroup.append("g")
             .call(leftAxis);
 
-        // append initial circles
-        var circlesGroup = chartGroup.selectAll("circle")
-            .data(healthRisks)
-            .enter()
-            .append("circle")
-            //.attr("cx", d => xLinearScale(d[chosenXAxis]))
-            .attr("cx", d => xLinearScale(d.poverty))
-            .attr("cy", d => yLinearScale(d.healthcare))
-            .attr("r", 15)
-            .attr("fill", "#000f87")
-            .attr("opacity", ".5");
+        
+        // // Define the circles group
+        // var circlesTextGroup = chartGroup.selectAll("circle")
+        // .data(healthRisks)
+        // .enter()
+    
+        // // Append initial circles
+        // var circlesGroup = circlesTextGroup
+        //     .append("circle")
+        //     .attr("cx", d => xLinearScale(d.poverty))
+        //     .attr("cy", d => yLinearScale(d.healthcare))
+        //     .attr("r", radius)
+        //     .attr("fill", "#000f87")
+        //     .attr("opacity", ".5");
 
-        circlesGroup.append("text")
-            .text (data => data.abbr)
-            .attr("cx", d => xLinearScale(d.poverty))
-            .attr("cy", d => yLinearScale(d.healthcare))
-            .attr("text-anchor", "middle")
-            .classed("stateAbbr", true)
-            .style("font, 10px sans-serif");
+
+        // // Append initial state abbreviations 
+        // var textGroup = circlesTextGroup
+        //      .append("text")
+        //      .classed("stateAbbr", true)
+        //      .attr("x", d => xLinearScale(d.poverty))
+        //      .attr("y", d => yLinearScale(d.healthcare))
+        //      .text (data => data.abbr)
+        //      .attr ("dy", 3)
+        //      .attr("font-size", radius);
+             
+
+
+
+
+         // Append initial circles
+         var circlesGroup = chartGroup.selectAll("circle")
+         .data(healthRisks)
+         .enter()
+         .append("circle")
+         //.attr("cx", d => xLinearScale(d[chosenXAxis]))
+         .attr("cx", d => xLinearScale(d.poverty))
+         .attr("cy", d => yLinearScale(d.healthcare))
+         .attr("r", radius)
+         .attr("fill", "#000f87")
+         .attr("opacity", ".5");
+
+     // Append initial state abbreviations to circles
+     var circleslabelsGroup = chartGroup.selectAll(".stateAbbr")
+         .data(healthRisks)
+         .enter()
+         .append("text")
+         .classed("stateAbbr", true)
+         .attr("x", d => xLinearScale(d.poverty))
+         .attr("y", d => yLinearScale(d.healthcare))
+         .text (data => data.abbr)
+         .attr("font-size", radius)
+         
+        //  circlesGroup.append("stateAbbr")
+        //     .text (data => data.abbr)
+        //     .attr("cx", d => xLinearScale(d.poverty))
+        //     .attr("cy", d => yLinearScale(d.healthcare))
+        //     .attr("text-anchor", "middle")
+        //     .classed("stateAbbr", true)
+        //     .style("font, 10px sans-serif");
 
 
         // Create group for two x-axis labels
