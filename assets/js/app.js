@@ -174,7 +174,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         .attr("y", d => yLinearScale(d[chosenYAxis]))
         //.attr("x", d => xLinearScale(d.poverty))
         //.attr("y", d => yLinearScale(d.healthcare))
-        //.attr("text-anchor", "middle")
+        .attr("text-anchor", "middle")
         .attr("dy", 4)
         .text(data => data.abbr)
         .style("font-size", 10)
@@ -305,6 +305,8 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
 
                 // Replace chosenYAxis with value
                 chosenYAxis = value;
+
+                console.log(`chosenYAxis =${chosenYAxis}`);
 
                 // Functions here found above csv import
                 // Update y scale for new data
