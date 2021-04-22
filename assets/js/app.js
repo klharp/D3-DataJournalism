@@ -2,7 +2,7 @@
 var svgWidth = 900;
 var svgHeight = 500;
 
-var margin = { top: 30, right: 30, bottom: 80, left: 60 };
+var margin = { top: 30, right: 30, bottom: 100, left: 60 };
 
 // Make responsive
 //function makeResponsive() {
@@ -59,6 +59,14 @@ function renderCircles(circlesGroup, newXscale, chosenXAxis) {
     return circlesGroup;
 }
 
+// Function for updating circles text group with transtion 
+function rendertext(circlesTextGroup, newXscale, chosenXAxis) {
+    circlesTextGroup.transition()
+        .duration(1000)
+        .attr("x", d => newXscale(d[chosenXAxis]));
+    return circlesTextGroup;
+}
+
 // Retrieve data from the CSV file and execute everything below
 d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
     if (err) throw err;
@@ -73,6 +81,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         data.smokes = +data.smokes;
         data.age = +data.age;
         data.obesity = +data.obesity;
+        data.income = +data.income;
     });
 
     // // xLinearScale function above csv import
@@ -149,20 +158,12 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         .classed("inactive", true)
         .text("Age");
 
-        var incomeLabel = labelsGroup.append("text")
+    var incomeLabel = labelsGroup.append("text")
         .attr("x", 0)
-        .attr("y", 50)
+        .attr("y", 70)
         .attr("value", "income") // value to grab for event listener
         .classed("inactive", true)
-        .text("Age");
-
-
-    //var albumsLabel = labelsGroup.append("text")
-    //.attr("x", 0)
-    //.attr("y", 40)
-    //.attr("value", "smokes") // value to grab for event listener
-    //.classed("inactive", true)
-    //.text("# of Albums Released");
+        .text("Income");
 
     // append y axis
     chartGroup.append("text")
@@ -194,6 +195,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
 
                 // updates circles with new x values
                 circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+                circleslabelsGroup = rendertext(circleslabelsGroup, xLinearScale, chosenXAxis);
 
                 // updates tooltips with new info
                 //circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -301,6 +303,5 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
 
 //   return circlesGroup;
 // }
-
 
 
