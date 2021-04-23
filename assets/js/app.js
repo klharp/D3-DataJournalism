@@ -109,6 +109,42 @@ function renderYText(circlesTextGroup, newYscale, chosenYAxis) {
     return circlesTextGroup;
 }
 
+// **** Function to update tooltip **** //
+// function used for updating circles group with new tooltip
+function updateToolTip(chosenXAxis, circlesGroup) {
+
+    var label;
+  
+    if (chosenXAxis === "poverty") {
+      label = "In Poverty (%):";
+    }
+    else if (chosenXAxis === "age") {
+      label = "Average Age (years)";
+    }
+    else {
+        label = "Average Income ($)";
+    }
+  
+    var toolTip = d3.tip()
+      .attr("class", "tooltip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
+      });
+  
+    circlesGroup.call(toolTip);
+  
+    circlesGroup.on("mouseover", function(data) {
+      toolTip.show(data, this);
+    })
+      // onmouseout event
+      .on("mouseout", function(data, index) {
+        toolTip.hide(data);
+      });
+  
+    return circlesGroup;
+  }
+
 
 
 // **** Load CSV, parse the data and create initial axes **** //
@@ -180,6 +216,8 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         .style("font-size", 10)
         .style("font-weight", "bold")
 
+    // updateToolTip function above csv import
+    var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
 
     // **** Axis Label Groups **** //
@@ -258,7 +296,8 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                 circlesLabelsGroup = renderXText(circlesLabelsGroup, xLinearScale, chosenXAxis);
 
                 // updates tooltips with new info
-                //circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+                circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+                
                 // Change classes to change bold text
                 if (chosenXAxis === "poverty") {
                     povertyLabel
