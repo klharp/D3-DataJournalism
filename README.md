@@ -13,9 +13,13 @@ The final app can be viewed at: <**add web link**>.
 
 - - -
 
-## Required Assignment: D3 Dabbler
+## Required Assignment
 
-Using D3, created a scatter plot between two of the data variables `Healthcare vs. Poverty`.
+Using D3, created a scatter plot between two of the data variables `Healthcare vs. Poverty`. 
+
+* Rendered the state abbreviations within the circle elements.
+* Scaled the axes appropriately.
+* Styled the text and circle elements.
 
 ![Default Plot](Images/default_graph.png)
 - - -
@@ -24,13 +28,14 @@ Using D3, created a scatter plot between two of the data variables `Healthcare v
 
 Make graph(s) dynamic and interactive.
 
+* More demographics and risk factors were added. Additional axis labels have click events so users can decide which data to display. 
+* Transitions were applied.
 
+![dynamic](Images/dynamic.gif)
 
-* More demographics and risk factors were added. Additional axis labels have click events so that users can decide which data to display. Animated the transitions were applied.
-
-![7-animated-scatter](Images/7-animated-scatter.gif)
-
-* Tooltips were added to reveal specific data when the user hovers the cursor over the element. 
+* Tooltips were added to reveal specific data when the user hovers the cursor over the circle element. 
+* The tooltip dynamically provides data for both the chosen X and Y axes.
+* Styled the tooltip element. 
 
 ![tooltips](Images/tooltips.gif)
 
