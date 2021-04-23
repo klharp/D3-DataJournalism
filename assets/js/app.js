@@ -32,7 +32,7 @@ var chartGroup = svg.append("g")
 var chosenXAxis = "poverty";
 var chosenYAxis = "healthcare";
 var radius = 15
-
+console.log(chosenYAxis);
 
 
 // **** Functions to update x and Y scales and axes **** //
@@ -244,6 +244,8 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                 // Replace chosenXAxis with value
                 chosenXAxis = value;
 
+                console.log(chosenXAxis)
+
                 // Functions here found above csv import
                 // Update x scale for new data
                 xLinearScale = xScale(healthRisks, chosenXAxis);
@@ -307,6 +309,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                 chosenYAxis = value;
 
                 console.log(`chosenYAxis =${chosenYAxis}`);
+                console.log(chosenYAxis);
 
                 // Functions here found above csv import
                 // Update y scale for new data
@@ -360,6 +363,3 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
             });
 
 });
-
-
-
