@@ -1,11 +1,13 @@
+//Used class assignment #12 from the D3 I lecture as starter code.
+
+// // Make responsive
+// function makeResponsive() {
+
 // Chart parameters
 var svgWidth = 900;
 var svgHeight = 540;
 
-var margin = { top: 30, right: 30, bottom: 100, left: 95 };
-
-// Make responsive
-//function makeResponsive() {
+var margin = { top: 30, right: 30, bottom: 120, left: 95 };
 
 //remove SVG area if not empty and replace with resized version
 var svgArea = d3.select("body").select("svg");
@@ -233,7 +235,6 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         .style("font-weight", "bold")
 
     // updateToolTip function above csv import
-    //var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
     var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
 
@@ -316,7 +317,6 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                 circlesLabelsGroup = renderXText(circlesLabelsGroup, xLinearScale, chosenXAxis);
 
                 // updates tooltips with new info
-                //circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
                 circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
                 // Change classes to change bold text
@@ -420,3 +420,9 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         });
 
 });
+
+// // When the browser loads, makeResponsive() is called.
+// makeResponsive();
+
+// // When the browser window is resized, makeResponsive() is called.
+// d3.select(window).on("resize", makeResponsive);

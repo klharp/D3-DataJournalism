@@ -1,9 +1,6 @@
 # D3 Homework - Data Journalism and D3
 
-
-
 ## Background
-
 
 The data set included with the assignment is based on 2014 ACS 1-year estimates from the [US Census Bureau](https://data.census.gov/cedsci/) with data on state rates of poverty, age, income, healthcare, obesity, and smoking. 
 
@@ -22,6 +19,7 @@ Using D3, created a scatter plot between two of the data variables `Healthcare v
 * Styled the text and circle elements.
 
 ![Default Plot](Images/default_graph.png)
+
 - - -
 
 ## Bonus Assignment
@@ -39,6 +37,5 @@ Make graph(s) dynamic and interactive.
 
 ![tooltips](Images/tooltips.gif)
 
-
-- - -
+Noted some obersvations of the data.
 
