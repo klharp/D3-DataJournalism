@@ -9,7 +9,7 @@ The data set included with the assignment is based on 2014 ACS 1-year estimates 
 
 D3, Javascript, HTML and CSS were used in this exercise.
 
-The final app can be viewed at: <**add web link**>.
+The final app can be viewed at: [https://klharp.github.io/D3-challenge/](https://klharp.github.io/D3-challenge/).
 
 - - -
 
