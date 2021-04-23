@@ -112,38 +112,40 @@ function renderYText(circlesTextGroup, newYscale, chosenYAxis) {
 // **** Function to update tooltip **** //
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
+//function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
     var label;
-  
+
     if (chosenXAxis === "poverty") {
-      label = "In Poverty (%):";
+        label = "In Poverty (%):";
     }
     else if (chosenXAxis === "age") {
-      label = "Average Age (years)";
+        label = "Average Age (years)";
     }
     else {
         label = "Average Income ($)";
     }
-  
+
     var toolTip = d3.tip()
-      .attr("class", "tooltip")
-      .offset([80, -60])
-      .html(function(d) {
-        return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
-      });
-  
+        .attr("class", "d3-tip")
+        .offset([65, 65])
+        .html(function (d) {
+            return (`<b>${d.state}</b><br>${label} ${d[chosenXAxis]}`);
+           // return (`${d.state}<br>${label} ${d[chosenXAxis]} $chosenYAxis`);
+        });
+
     circlesGroup.call(toolTip);
-  
-    circlesGroup.on("mouseover", function(data) {
-      toolTip.show(data, this);
+
+    circlesGroup.on("mouseover", function (data) {
+        toolTip.show(data, this);
     })
-      // onmouseout event
-      .on("mouseout", function(data, index) {
-        toolTip.hide(data);
-      });
-  
+        // onmouseout event
+        .on("mouseout", function (data, index) {
+            toolTip.hide(data);
+        });
+
     return circlesGroup;
-  }
+}
 
 
 
@@ -297,7 +299,8 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
 
                 // updates tooltips with new info
                 circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
-                
+                //circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
+
                 // Change classes to change bold text
                 if (chosenXAxis === "poverty") {
                     povertyLabel
@@ -331,10 +334,8 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                     incomeLabel
                         .classed("active", true)
                         .classed("inactive", false);
-                    
-                    
                 }
-             }
+            }
         });
 
     // y axis labels event listener
@@ -362,7 +363,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                 circlesLabelsGroup = renderYText(circlesLabelsGroup, yLinearScale, chosenYAxis);
 
                 // updates tooltips with new info
-                //circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+                //circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
                 // changes classes to change bold text
                 if (chosenYAxis === "healthcare") {
@@ -398,7 +399,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                         .classed("active", true)
                         .classed("inactive", false);
                 }
-                }
-            });
+            }
+        });
 
 });
