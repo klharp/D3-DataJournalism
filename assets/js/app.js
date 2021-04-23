@@ -65,6 +65,8 @@ function yScale(healthRisks, chosenYAxis) {
     return yLinearScale;
 }
 
+console.log(`chosenYAxis =${chosenYAxis}`);
+
 // Function for updating yAxis var upon clicking label
 function renderYAxes(newYscale, yAxis) {
     var leftAxis = d3.axisLeft(newYscale);
@@ -255,6 +257,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
     var healthcareLabel = ylabelsGroup.append("text")
         .attr("y", 0 - margin.left)
         .attr("x", 0 - (height / 2))
+        .attr("value", "healthcare") // value to grab for event listener
         .attr("dy", 60)
         .classed("active", true)
         .text("Lacks Healthcare (%)");
@@ -262,6 +265,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
     var smokesLabel = ylabelsGroup.append("text")
         .attr("y", 0 - margin.left)
         .attr("x", 0 - (height / 2))
+        .attr("value", "smokes") // value to grab for event listener
         .attr("dy", 40)
         .classed("inactive", true)
         .text("People Who Smoke (%)");
@@ -269,6 +273,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
     var obeseLabel = ylabelsGroup.append("text")
         .attr("y", 0 - margin.left)
         .attr("x", 0 - (height / 2))
+        .attr("value", "obesity") // value to grab for event listener
         .attr("dy", 20)
         .classed("inactive", true)
         .text("People Who Are Obese  (%)");
@@ -348,7 +353,6 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
                 // Replace chosenYAxis with value
                 chosenYAxis = value;
 
-                console.log(`chosenYAxis =${chosenYAxis}`);
                 console.log(chosenYAxis);
 
                 // Functions here found above csv import
