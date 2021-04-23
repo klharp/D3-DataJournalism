@@ -215,7 +215,7 @@ d3.csv("assets/data/data.csv").then(function (healthRisks, err) {
         .attr("text-anchor", "middle")
         .attr("dy", 4)
         .text(data => data.abbr)
-        .style("font-size", 10)
+        .style("font-size", 11)
         .style("font-weight", "bold")
 
     // updateToolTip function above csv import
