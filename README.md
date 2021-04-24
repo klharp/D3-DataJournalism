@@ -26,7 +26,8 @@ Using D3, created a scatter plot between two of the data variables `Healthcare v
 
 Make graph(s) dynamic and interactive.
 
-* More demographics and risk factors were added. Additional axis labels have click events so users can decide which data to display. 
+* Made responsive.
+* Added more demographics and risk factors. Additional axis labels have click events so users can decide which data to display. 
 * Transitions were applied.
 
 ![dynamic](Images/dynamic.gif)
