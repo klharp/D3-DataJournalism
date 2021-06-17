@@ -1,4 +1,4 @@
-//Used class assignment #12 from the D3 I lecture as starter code.
+// Used class assignment #12 from the D3 I lecture as starter code.
 
 // Make responsive
 function makeResponsive() {
