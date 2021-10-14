@@ -1,4 +1,4 @@
-# D3 Homework - Data Journalism and D3
+# Data Journalism and D3
 
 ## Project Overview
 This project focused on visualizing health risks facing particular demographics. The data set included with the assignment is based on 2014 ACS 1-year estimates from the [US Census Bureau](https://data.census.gov/cedsci/) with data on state rates of poverty, age, income, healthcare, obesity, and smoking. 
@@ -10,7 +10,7 @@ Languages and libraries used:
 * HTML
 * CSS
 
-The final app can be viewed at: [https://klharp.github.io/D3-challenge/](https://klharp.github.io/D3-challenge/).
+The final app can be viewed at: [https://klharp.github.io/D3-DataJournalism/](https://klharp.github.io/D3-DataJournalism/).
 
 - - -
 
@@ -42,5 +42,5 @@ Make graph(s) dynamic and interactive.
 
 ![tooltips](Images/tooltips.gif)
 
-Noted some obersvations of the data.
+
 
